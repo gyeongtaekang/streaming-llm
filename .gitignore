@@ -1,3 +1,6 @@
+# Fine-tuned model (too large for GitHub)
+finetuned_gpt2xl_rocstories/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
