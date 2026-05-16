@@ -102,6 +102,18 @@ def main():
 
     acc = correct / len(val_rows)
 
+    # 전체 결과 CSV 저장
+    import csv as csv_mod
+    csv_path = "eval_results_raw.csv"
+    fieldnames = ["idx", "context", "quiz1", "quiz2", "correct_answer",
+                  "predicted", "score_q1", "score_q2", "main_generated", "correct"]
+    with open(csv_path, "w", newline="", encoding="utf-8-sig") as f:
+        writer = csv_mod.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for i, r in enumerate(results):
+            writer.writerow({"idx": i + 1, **r})
+    print(f"\n[저장] 전체 결과: {csv_path}  ({len(results)}행)")
+
     print(f"\n{'='*60}\nSample Predictions\n{'='*60}")
     for r in results[:5]:
         print(f"\nContext:   {r['context'][:110]}...")
